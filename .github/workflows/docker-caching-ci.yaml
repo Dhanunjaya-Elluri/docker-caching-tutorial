@@ -14,10 +14,6 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: ./docker-files
-
     steps:
 
       - name: Checkout code
@@ -49,6 +45,7 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
         with:
           context: .
+          file: ./docker-files/Dockerfile
           push: true
           builder: mybuilder
           build-args: TEST1=${{ env.ENV_VAR }}
