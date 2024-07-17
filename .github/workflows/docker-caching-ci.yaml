@@ -49,7 +49,7 @@ jobs:
           push: true
           builder: mybuilder
           build-args: |
-            ENV_VAR=${{ env.ENV_VAR }}
-          tags: ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPO_NAME }}:${{ github.sha }}
-          cache-from: type=registry,ref=${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPO_NAME }}:cache
-          cache-to: type=registry,mode=max,image-manifest=true,oci-mediatypes=true,ref=${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPO_NAME }}:cache
+            - ENV_VAR=${{ env.ENV_VAR }}
+          tags: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          cache-from: type=registry,ref=$ECR_REGISTRY/$ECR_REPOSITORY:cache
+          cache-to: type=registry,mode=max,image-manifest=true,oci-mediatypes=true,ref=$ECR_REGISTRY/$ECR_REPOSITORY:cache
