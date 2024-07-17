@@ -4,4 +4,4 @@ COPY . /app
 
 WORKDIR /app
 
-CMD ["echo", "${ENV_VAR}"]
+CMD ["echo", "$ENV_VAR"]
