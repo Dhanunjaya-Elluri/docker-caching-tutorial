@@ -14,6 +14,10 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: ./docker-files
+
     steps:
 
       - name: Checkout code
@@ -40,7 +44,6 @@ jobs:
 
       - name: Build and push
         uses: docker/build-push-action@v5
-        working-directory: docker-files
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           IMAGE_TAG: ${{ github.sha }}
