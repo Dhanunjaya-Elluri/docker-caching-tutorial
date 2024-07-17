@@ -4,4 +4,4 @@ COPY . /app
 
 WORKDIR /app
 
-CMD ["echo", "Hello, World!, from Docker!"]
+CMD ["echo", "${ENV_VAR}"]

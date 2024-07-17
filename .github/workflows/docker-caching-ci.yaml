@@ -8,6 +8,7 @@ on:
 env:
   AWS_REGION: eu-central-1
   ECR_REPO_NAME: test-repository
+  ENV_VAR: test
 
 jobs:
   build-and-push:
@@ -47,6 +48,8 @@ jobs:
           context: .
           push: true
           builder: mybuilder
+          build-args: |
+            ENV_VAR=${{ env.ENV_VAR }}
           tags: ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPO_NAME }}:${{ github.sha }}
           cache-from: type=registry,ref=${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPO_NAME }}:cache
           cache-to: type=registry,mode=max,image-manifest=true,oci-mediatypes=true,ref=${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPO_NAME }}:cache
